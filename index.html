@@ -6,85 +6,137 @@
 <title>Mahmud Patwary (MP) - Personal Website</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
 <style>
+/* --- সাধারণ সেটিংস --- */
 * {margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif;}
 body {
     background: linear-gradient(135deg, #4a90e2, #ffffff); 
-    background-attachment: fixed;
-    color:#333; 
-    line-height: 1.6;
+    background-attachment: fixed; /* ব্যাকগ্রাউন্ড ফিক্সড থাকবে */
+    scroll-behavior:smooth; 
+    color:#333;
+    overflow-x: hidden; /* মোবাইল স্ক্রিনে ডানে-বামে স্লাইডিং বন্ধ করতে */
 }
 a{text-decoration:none;}
 
-/* Header */
-header{text-align:center; padding:60px 20px;}
+/* --- Header (রেসপন্সিভ এবং আগের এনিমেশন সহ) --- */
+header{text-align:center; padding: 80px 20px 60px 20px;}
+
+/* ডায়নামিক টেক্সট সাইজ (clamp) */
 header h1{font-size: clamp(1.8rem, 5vw, 3rem); color:#fff; margin-bottom:10px; text-shadow:1px 1px 3px rgba(0,0,0,0.3);}
+
+/* ডায়নামিক শেপ/কালার এবং হোভার ইফেক্ট (আপনার আগের ডিজাইন) */
 header h2{
     font-size: clamp(1.5rem, 4vw, 2.5rem); font-weight:700; margin-bottom:15px;
     background: linear-gradient(45deg,#ff8a00,#e52e71,#4a90e2);
     -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    text-shadow:2px 2px 6px rgba(0,0,0,0.3);
     transition: transform 0.3s;
+    display: inline-block; /* হোভার এনিমেশনের জন্য প্রয়োজন */
 }
-header p{font-size: clamp(0.9rem, 2vw, 1.2rem); margin-bottom:25px; color:#f0f0f0;}
+header h2:hover{transform: scale(1.05);} /* হোভার ইফেক্ট */
 
+header p{font-size: clamp(1rem, 2.5vw, 1.2rem); margin-bottom:25px; color:#f0f0f0; line-height:1.6;}
+
+/* প্রোফাইল পিকচার এনিমেশন */
 .profile-pic{
-    width: 150px; height: 150px; 
-    max-width: 80%; /* মোবাইলের জন্য নিরাপদ */
+    width: 180px; height: 180px; 
+    max-width: 70%; /* মোবাইলে ছোট দেখাবে */
     border-radius:50%; object-fit:cover; border:4px solid #fff; 
-    margin-bottom:20px; transition: 0.5s;
+    margin-bottom:20px; 
+    transition: transform 0.5s, box-shadow 0.5s;
 }
-.profile-pic:hover{transform: scale(1.05); box-shadow:0 10px 20px rgba(0,0,0,0.2);}
+.profile-pic:hover{transform: scale(1.1); box-shadow:0 15px 25px rgba(0,0,0,0.3);}
 
-/* Main Container - Responsive Grid */
-main {
-    max-width: 1100px; 
-    margin: 20px auto; 
-    padding: 20px; 
+/* কন্টাক্ট বাটন */
+.btn-contact{
+    padding:12px 30px; font-size:1rem; background-color:#fff; color:#4a90e2; 
+    border:2px solid #fff; border-radius:30px; cursor:pointer; 
+    transition:0.4s; display:inline-block; font-weight: 600;
+}
+.btn-contact:hover{background-color:#4a90e2; color:#fff; transform: scale(1.05);}
+
+/* সোশাল লিংক এনিমেশন (আপনার আগের ডিজাইন) */
+.social-links{margin-top:25px;}
+.social-links a{display:inline-block; margin:0 12px; font-size:1.7rem; color:#fff; transition:0.4s;}
+.social-links a:hover{color:#ff8a00; transform: scale(1.2) translateY(-5px);} /* হোভার এনিমেশন */
+
+/* --- Main (ফ্লেক্সিবল গ্রিড লেআউট) --- */
+main{
+    max-width:1100px; 
+    margin: 40px auto; 
+    padding: 0 20px; 
     display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* এটাই ম্যাজিক লাইন */
-    gap: 25px;
+    /* রেসপন্সিভ গ্রিড: মোবাইলে ১ কলাম, পিসিতে ২ কলাম */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+    gap: 30px;
 }
 
-section {
+/* সেকশন কার্ড ডিজাইন (আগের ডায়নামিক শেপ সহ) */
+section{
     background-color: rgba(255,255,255,0.95); 
-    padding: clamp(20px, 4vw, 35px); 
-    border-radius: 20px; 
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    padding: clamp(20px, 5vw, 40px); /* ডায়নামিক প্যাডিং */
+    border-radius:20px; 
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+/* বক্সের হোভার ইফেক্ট */
+section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+section h2{text-align:center; color:#4a90e2; margin-bottom:20px; font-size: 1.8rem; position:relative;}
+section h2::after{content:''; width:60px; height:3px; background:#4a90e2; display:block; margin:10px auto 0; border-radius:2px;}
+
+section p{font-size: 1.05rem; line-height:1.8; text-align:justify; color: #555;}
+
+/* কন্টাক্ট ইনফো */
+.contact-info{margin-top:15px; text-align:center;}
+.contact-info p {margin-bottom: 15px; word-wrap: break-word;} /* লম্বা টেক্সট ভাঙার জন্য */
+.contact-info a{color:#4a90e2; font-weight:600; transition: 0.3s;}
+.contact-info a:hover{color: #e52e71; text-decoration:underline;} /* টেক্সট হোভার ইফেক্ট */
+
+/* --- Footer --- */
+footer{background:#333; color:#fff; text-align:center; padding:30px 20px; margin-top:60px;}
+footer p {font-size: 0.9rem; margin-bottom: 5px;}
+
+/* --- Modal (লুকানো থাকবে, শুধু বাটনে ক্লিক করলে আসবে) --- */
+.modal{
+    display:none; /* ডিফল্টভাবে লুকানো */
+    position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%;
+    background-color:rgba(0,0,0,0.7); 
+    justify-content:center; align-items:center;
+    opacity: 0; transition: opacity 0.4s ease; /* স্মুথ ওপেনিং */
+}
+/* মোডাল ওপেন হলে এই ক্লাস যুক্ত হবে */
+.modal.show {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    opacity: 1;
 }
 
-section h2 {text-align:center; color:#4a90e2; margin-bottom:15px; font-size: 1.8rem;}
-section p {font-size: 1rem; text-align: center; color: #555;}
-
-.contact-info {margin-top:15px; word-wrap: break-word;} /* লম্বা ইমেইল যেন কেটে না যায় */
-.contact-info p {margin-bottom: 10px; font-size: 0.95rem;}
-
-/* Buttons & Links */
-.btn-contact {
-    padding: 12px 35px; border-radius: 30px; 
-    background: #fff; color: #4a90e2; border: 2px solid #fff;
-    cursor: pointer; font-weight: 600; transition: 0.3s;
+.modal-content{
+    background:#fff; padding: clamp(25px, 6vw, 40px); border-radius:20px; 
+    text-align:center; width: 90%; max-width: 400px;
+    box-shadow:0 15px 30px rgba(0,0,0,0.4); position:relative;
+    transform: translateY(-50px); transition: transform 0.4s ease;
 }
-.btn-contact:hover {background: #4a90e2; color: #fff;}
+.modal.show .modal-content{transform: translateY(0);} /* এনিমেশন */
 
-.social-links a {margin: 0 10px; font-size: 1.8rem; color: #fff; transition: 0.3s;}
+.modal-content h3{margin-bottom:25px; color:#4a90e2; font-size:1.6rem;}
+.modal-content a{display: inline-block; margin: 10px 15px; font-size:2.5rem; color:#4a90e2; transition:0.3s;}
+.modal-content a:hover{color:#e52e71; transform: scale(1.2) translateY(-5px);}
 
-/* Modal Responsive */
-.modal-content {
-    background:#fff; padding:30px; border-radius:20px; text-align:center; 
-    width: 90%; max-width: 400px;
-}
+.close-btn{position:absolute; top:10px; right:15px; font-size:2rem; color:#333; cursor:pointer; transition:0.3s;}
+.close-btn:hover{color:#e52e71;}
 
-footer {background:#333; color:#fff; text-align:center; padding:30px 20px; margin-top:40px;}
-
-/* অতি ক্ষুদ্র ডিভাইসের জন্য (Mobile Small) */
-@media (max-width: 360px) {
-    main { grid-template-columns: 1fr; }
-    section { padding: 15px; }
+/* --- মোবাইল ডিভাইসের জন্য ছোটখাটো এডজাস্টমেন্ট --- */
+@media(max-width: 400px){
+    header{padding: 60px 15px 40px 15px;}
+    main {gap: 20px;}
+    section {padding: 20px 15px;}
 }
 </style>
 </head>
@@ -92,55 +144,77 @@ footer {background:#333; color:#fff; text-align:center; padding:30px 20px; margi
 
 <header>
     <h1>Welcome to My Website</h1>
-    <img src="My-photo.jpg" alt="Mahmud" class="profile-pic">
+    <img src="My-photo.jpg" alt="Mahmud Patwary" class="profile-pic">
     <h2>Mahmud Patwary (MP)</h2>
     <p>Graphics Designer, Code Expert, Digital Creator</p>
     <button class="btn-contact" id="openModal">Contact Me</button>
+    
     <div class="social-links">
-        <a href="https://www.facebook.com/hlmahmud.mp" target="_blank"><i class="fab fa-facebook"></i></a>
-        <a href="https://www.instagram.com/hlmahmud.mp" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://wa.me/8801792644763" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.facebook.com/hlmahmud.mp" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.instagram.com/hlmahmud.mp" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/8801792644763" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
     </div>
 </header>
 
 <main>
     <section id="about">
         <h2>About Me</h2>
-        <p>Assalamualaikum! I'm Mahmud, a Graphics Designer based in Dhaka. I love solving problems with code and creativity. Let's build something great together!</p>
+        <p>Assalamualaikum Everyone, I'm Mahmud. I'm a Graphics Designer living at Dhaka, Bangladesh. I help people with my skills. Contact me via WhatsApp, Email, Facebook, or Instagram.</p>
     </section>
 
     <section id="contact">
-        <h2>Quick Contact</h2>
+        <h2>Contact</h2>
         <div class="contact-info">
-            <p><strong>Email:</strong> <br> <a href="mailto:mahmudpatwary763@gmail.com">mahmudpatwary763@gmail.com</a></p>
-            <p><strong>WhatsApp:</strong> <br> <a href="https://wa.me/8801792644763">+880 1792-644763</a></p>
+            <p><strong>Email:</strong><br> <a href="mailto:mahmudpatwary763@gmail.com">mahmudpatwary763@gmail.com</a></p>
+            <p><strong>WhatsApp:</strong><br> <a href="https://wa.me/8801792644763" target="_blank">+880 1792-644763</a></p>
+            <p><strong>Facebook:</strong><br> <a href="https://www.facebook.com/hlmahmud.mp" target="_blank">Mahmud Patwary (MP)</a></p>
+            <p><strong>Instagram:</strong><br> <a href="https://www.instagram.com/hlmahmud.mp" target="_blank">@hlmahmud.mp</a></p>
         </div>
     </section>
 </main>
 
 <footer>
-    <p>Fi Amanillah</p>
+    <p>Thank you all. Fi Amanillah</p>
     <p>© 2025 Mahmud Patwary (MP)</p>
 </footer>
 
 <div class="modal" id="contactModal">
     <div class="modal-content">
-        <span class="close-btn" id="closeModal" style="cursor:pointer; float:right;">&times;</span>
-        <h3 style="margin-bottom:20px;">Contact Me</h3>
-        <a href="https://wa.me/8801792644763" style="font-size:2rem; margin:10px;"><i class="fab fa-whatsapp"></i></a>
-        <a href="mailto:mahmudpatwary763@gmail.com" style="font-size:2rem; margin:10px;"><i class="fas fa-envelope"></i></a>
+        <span class="close-btn" id="closeModal">&times;</span>
+        <h3>Contact Me</h3>
+        <a href="https://wa.me/8801792644763" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="mailto:mahmudpatwary763@gmail.com"><i class="fas fa-envelope"></i></a>
+        <a href="https://www.facebook.com/hlmahmud.mp" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.instagram.com/hlmahmud.mp" target="_blank"><i class="fab fa-instagram"></i></a>
     </div>
 </div>
 
 <script>
-// আপনার আগের স্ক্রিপ্টটি এখানে কাজ করবে
+// জাভাস্ক্রিপ্ট ঠিক করা হয়েছে যাতে মোডাল পেজ লোডে না আসে
 const openBtn = document.getElementById('openModal');
 const closeBtn = document.getElementById('closeModal');
 const modal = document.getElementById('contactModal');
 
-openBtn.onclick = () => { modal.style.display = 'flex'; setTimeout(() => modal.classList.add('show'), 10); }
-closeBtn.onclick = () => { modal.classList.remove('show'); setTimeout(() => modal.style.display = 'none', 400); }
-window.onclick = (e) => { if(e.target === modal) closeBtn.onclick(); }
+// মোডাল ওপেন করার ফাংশন
+function openModal() {
+    modal.classList.add('show');
+}
+
+// মোডাল বন্ধ করার ফাংশন
+function closeModal() {
+    modal.classList.remove('show');
+}
+
+// ইভেন্ট লিসেনার
+openBtn.addEventListener('click', openModal);
+closeBtn.addEventListener('click', closeModal);
+
+// মোডালের বাইরে ক্লিক করলে বন্ধ হবে
+window.addEventListener('click', (e) => { 
+    if(e.target === modal){
+        closeModal();
+    }
+});
 </script>
 
 </body>
